@@ -13,7 +13,7 @@ async def _callbacks(bot: Client, callback_query: CallbackQuery):
     mention = user.mention
     query = callback_query.data.lower()
     if query.startswith("home"):
-        if query == 'home':
+        if query == "home":
             chat_id = callback_query.from_user.id
             message_id = callback_query.message.id
             await bot.edit_message_text(
@@ -35,11 +35,16 @@ async def _callbacks(bot: Client, callback_query: CallbackQuery):
         )
     elif query == "generate":
         await callback_query.answer()
-        await callback_query.message.reply(ask_ques, reply_markup=InlineKeyboardMarkup(buttons_ques))
+        await callback_query.message.reply(
+            ask_ques, reply_markup=InlineKeyboardMarkup(buttons_ques)
+        )
     elif query.startswith("pyrogram") or query.startswith("telethon"):
         try:
             if query == "pyrogram":
-                await callback_query.answer("Please note that the new type of string sessions may not work in all bots, i.e, only the bots that have been updated to pyrogram v2 will work!", show_alert=True)
+                await callback_query.answer(
+                    "Please note that the new type of string sessions may not work in all bots, i.e, only the bots that have been updated to pyrogram v2 will work!",
+                    show_alert=True,
+                )
                 await generate_session(bot, callback_query.message)
             elif query == "pyrogram1":
                 await callback_query.answer()
@@ -53,7 +58,9 @@ async def _callbacks(bot: Client, callback_query: CallbackQuery):
             await callback_query.message.reply(ERROR_MESSAGE.format(str(e)))
 
 
-ERROR_MESSAGE = "Oops! An exception occurred! \n\n**Error** : {} " \
-            "\n\nPlease visit @StarkBotsChat if this message doesn't contain any " \
-            "sensitive information and you if want to report this as " \
-            "this error message is not being logged by us!"
+ERROR_MESSAGE = (
+    "Oops! An exception occurred! \n\n**Error** : {} "
+    "\n\nPlease visit @StarkBotsChat if this message doesn't contain any "
+    "sensitive information and you if want to report this as "
+    "this error message is not being logged by us!"
+)

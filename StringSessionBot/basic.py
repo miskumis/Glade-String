@@ -15,7 +15,7 @@ async def start(bot: Client, msg: Message):
     await bot.send_message(
         msg.chat.id,
         Data.START.format(msg.from_user.mention, mention),
-        reply_markup=InlineKeyboardMarkup(Data.buttons)
+        reply_markup=InlineKeyboardMarkup(Data.buttons),
     )
 
 
@@ -23,8 +23,7 @@ async def start(bot: Client, msg: Message):
 @Client.on_message(filter("help"))
 async def _help(bot: Client, msg: Message):
     await bot.send_message(
-        msg.chat.id, Data.HELP,
-        reply_markup=InlineKeyboardMarkup(Data.home_buttons)
+        msg.chat.id, Data.HELP, reply_markup=InlineKeyboardMarkup(Data.home_buttons)
     )
 
 
